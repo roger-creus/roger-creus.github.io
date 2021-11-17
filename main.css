@@ -14,5 +14,8 @@
     transition: all 100ms ease-in;
     transform: scale(1.05);
     border: thick inset black;
-    
+}
+
+.navbar{
+    background-color: rgb(233, 232, 232);       
 }
