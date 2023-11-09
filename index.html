@@ -89,11 +89,18 @@
                             I am from Barcelona and I graduated in the  <a href = "https://dse.upc.edu/en" target="_blank">BSc in Data Science and Engineering at the Universitat Politècnica de Catalunya (UPC)</a> in Barcelona, Spain.
                             I am a <strong>Research MSc student</strong> at <a href = "https://mila.quebec/en/" target="_blank"> Mila Québec</a> & at <a href = "https://diro.umontreal.ca/english/home/" target="_blank">University of Montréal</a> since Fall 2022. I have joined the <a href = "https://montrealrobotics.ca/" target="_blank">Robotics and Embodied AI Lab (REAL)</a> under supervision of <a href="https://www.fracturedplane.com/" target="_blank">Professor Glen Berseth</a>.
                         </p>
+                        <p style="font-weight: 500;">
+                            Anticipated graduation date: September 2024
+                        </p>
+                        <p style="font-weight: 500;">
+                            Now applying for PhD studies
+                        </p>
+                        <br>
                         <p class = "title is-5">
                             Research
                         </p>
                         <p>
-                            The core objectives of my research are at the intersection of <strong>reinforcement learning and the quest for creating more capable and versatile agents</strong>. My long-term research goal is to develop AI systems that sense complex environments and approach learning processes in an efficient and generalised manner like we humans do (e.g. embodied AI systems like robots in the real world or agents in videogames adopting intelligent behaviours by taking advantage of vision and language processing). 
+                            The core objectives of my research are at the intersection of <strong>reinforcement learning and the quest for creating more capable and versatile agents</strong>. My long-term research goal is to enable autonomous agents to operate in complex environments and master generally useful skills like we humans do (e.g. embodied AI systems like robots in the real world or agents in videogames adopting intelligent behaviours by taking advantage of vision and language processing). 
                         </p>
                     </div>
                     <div class = "columns">
@@ -121,7 +128,7 @@
                                 <p class = "title is-5">Experience</p>
                                 <ul>
                                     <li>
-                                        Researc Intern @ Ubisoft LaForge (Montreal, Canada)
+                                        Research Intern @ Ubisoft LaForge (Montreal, Canada)
                                     </li>
                                     <li>
                                         Junior Data Scientist @ HP Inc (Barcelona, Spain)
@@ -149,20 +156,28 @@
             <div class = "columns">
                 <div class = "column">
                     <!-- This is a publication -->
-                    <a href="https://upcommons.upc.edu/handle/2117/353772" target="_blank">
+                    <a href="https://arxiv.org/abs/2310.18144" target="_blank">
                         <div class = "box publication">
-                            <p class = "title is-5"> Unsupervised Skill Learning from Pixels (BSc Thesis) </p>
-                            <p class = "subtitle is-6"><strong>Roger Creus Castanyer</strong></p>
-                            <p>This work focuses on the self-acquirement of the fundamental task-agnostic knowledge available within an environment. The aim is to discover and learn baseline representations and behaviours that can later be useful for solving embodied visual navigation downstream tasks. </p>
+                            <p class = "title is-5">Improving Intrinsic Exploration by Creating Stationary Objectives </p>
+                            <p class = "subtitle is-6"><strong>Roger Creus Castanyer</strong>, Joshua Romoff, Glen Berseth</p>
+                            <p style="font-weight: 600;">Accepted at Agent Learning in Open Endedness workshop @ NeurIPS 2023.</p>
+                            <br>
+                            <p style="font-weight: 600;">Abstract</p>
+                            <p>We identify that any intrinsic reward function derived from count-based methods is non-stationary and hence induces a difficult objective to optimize for the agent. The key contribution of our work lies in transforming the original non-stationary rewards into stationary rewards through an augmented state representation. We introduce the <strong>Stationary Objectives For Exploration (SOFE) framework</strong>. Our experiments show that SOFE improves the agents' performance in challenging exploration problems, including sparse-reward tasks, pixel-based observations, 3D navigation, and procedurally generated environments.
+                            </p>
                         </div>  
                     </a>
                     <br>
+                    
                     <!-- This is a publication -->
-                    <a href="https://arxiv.org/abs/2107.08398" target="_blank">
+                    <a href="https://upcommons.upc.edu/handle/2117/353772" target="_blank">
                         <div class = "box publication">
-                            <p class = "title is-5"> Unsupervised Skill-Discovery and Skill-Learning in Minecraft </p>
-                            <p class = "subtitle is-6">Juan José Nieto, <strong>Roger Creus Castanyer</strong>, Xavier Giró-i-Nieto</p>
-                            <p>Pre-training Reinforcement Learning agents in a task-agnostic manner has shown promising results. However, previous works still struggle in learning and discovering meaningful skills in high-dimensional state-spaces, such as pixel-spaces. We approach the problem by leveraging unsupervised skill discovery and self-supervised learning of state representations.</p>
+                            <p class = "title is-5"> Unsupervised Skill Learning from Pixels</p>
+                            <p class = "subtitle is-6"><strong>Roger Creus Castanyer</strong></p>
+                            <p style="font-weight: 600;">BSc Thesis</p>
+                            <br>
+                            <p style="font-weight: 600;">Abstract</p>
+                            <p>This work focuses on the self-acquirement of the fundamental task-agnostic knowledge available within an environment. The aim is to discover and learn baseline representations and behaviours that can later be useful for solving embodied visual navigation downstream tasks. </p>
                         </div>  
                     </a>
                     <br>
@@ -171,7 +186,9 @@
                         <div class = "box publication">
                             <p class = "title is-5"> Integration of Convolutional Neural Networks in Mobile Applications </p>
                             <p class = "subtitle is-6"> <strong>Roger Creus Castanyer</strong>, Silverio Martínez-Fernández, Xavier Franch</p>
-                            <p>Github: <a href = "https://github.com/yuyecreus/CNN-in-mobile-device" target="_blank">https://github.com/yuyecreus/CNN-in-mobile-device</a></p>
+                            <p style="font-weight: 600;">Accepted at Workshop on AI Engineering @ ICSE 2021.</p>
+                            <br>
+                            <p style="font-weight: 600;">Abstract</p>
                             <p>When building Deep Learning (DL) models, data scientists and software engineers manage the trade-off between their accuracy, or any other suitable success criteria, and their complexity. In an environment with high computational power, a common practice is making the models go deeper by designing more sophisticated architectures. However, in the context of mobile devices, which possess less computational power, keeping complexity under control is a must. </p>
                         </div>  
                     </a>
@@ -180,18 +197,60 @@
                         <div class = "box publication">
                             <p class = "title is-5"> PiCoEDL: Discovery and Learning of Minecraft Navigation Goals from Pixels and Coordinates </p>
                             <p class = "subtitle is-6"> Juan José Nieto, <strong>Roger Creus Castanyer</strong>, Xavier Giró-i-Nieto</p>
+                            <p style="font-weight: 600;">Accepted at Embodied AI workshop @ CVPR 2021.</p>
+                            <br>
+                            <p style="font-weight: 600;">Abstract</p>
                             <p>Defining a reward function in Reinforcement Learning(RL) is not always possible or very costly. For this reason, there is a great interest in training agents in a task-agnostic manner making use of intrinsic motivations and unsupervised techniques. We hypothesize that RL agents will also benefit from unsupervised pre-trainings with no extrinsic rewards, analogously to how humans mostly learn, especially in the early stages of life.</p>
                         </div>  
                     </a>
-
+                    <br>
+                    <!-- This is a publication -->
+                    <a href="https://aclanthology.org/2020.webnlg-1.5.pdf" target="_blank">
+                        <div class = "box publication">
+                            <p class = "title is-5"> Enhancing sequence-to-sequence modelling for RDF triples to natural text </p>
+                            <p class = "subtitle is-6">Oriol Domingo, David Bergés, Roser Cantenys, <strong>Roger Creus Castanyer</strong>, José Adrian Rodríguez Fonollosa</p>
+                            <p style="font-weight: 600;">Accepted at WebNLG workshop 2021</p>
+                            <br>
+                            <p style="font-weight: 600;">Abstract</p>
+                            <p>This work establishes key guidelines on how, which and when Machine Translation (MT) techniques are worth applying to RDF-to-Text task. Not only do we apply and compare the most prominent MT architecture, the Transformer, but we also analyze state-of-the-art techniques such as Byte Pair Encoding or Back Translation to demonstrate an improvement in generalization.</p>
+                        </div>  
+                    </a>
                 </div>
             
                 <div class = "column">
+                    <!-- This is a publication -->
+                    <a href="https://arxiv.org/abs/2310.18144" target="_blank">
+                        <div class = "box publication">
+                            <p class = "title is-5">Surprise-Adaptive Intrinsic Motivation for Unsupervised Reinforcement Learning</p>
+                            <p class = "subtitle is-6">Adriana Hugessen*, <strong>Roger Creus Castanyer*</strong>, Glen Berseth</p>
+                            <p style="font-weight: 600;">(Oral Presentation) Accepted at Intrinsically Motivated Open-ended Learning workshop @ NeurIPS 2023.</p>
+                            <br>
+                            <p style="font-weight: 600;">Abstract</p>
+                            <p>Both surprise-minimizing and surprise-maximizing (curiosity) objectives for unsupervised reinforcement learning (RL) have been shown to be effective in different environments, depending on the environment's level of natural entropy. However, neither method can perform well across all entropy regimes. In an effort to find a single surprise-based method that will encourage emergent behaviors in any environment, we propose an agent that can adapt its objective depending on the entropy conditions it faces, by framing the choice as a multi-armed bandit problem. We devise a novel intrinsic feedback signal for the bandit which captures the ability of the agent to control the entropy in its environment. We demonstrate that such agents can learn to control entropy and exhibit emergent behaviors in both high-and low-entropy regimes.
+                            </p>
+                        </div>  
+                    </a>
+                    <br>
+                    <!-- This is a publication -->
+                    <a href="https://arxiv.org/abs/2107.08398" target="_blank">
+                        <div class = "box publication">
+                            <p class = "title is-5"> Unsupervised Skill-Discovery and Skill-Learning in Minecraft </p>
+                            <p class = "subtitle is-6">Juan José Nieto, <strong>Roger Creus Castanyer</strong>, Xavier Giró-i-Nieto</p>
+                            <p style="font-weight: 600;">Accepted at Unsupervised Reinforcement Learning workshop @ ICML 2021.</p>
+                            <br>
+                            <p style="font-weight: 600;">Abstract</p>
+                            <p>Pre-training Reinforcement Learning agents in a task-agnostic manner has shown promising results. However, previous works still struggle in learning and discovering meaningful skills in high-dimensional state-spaces, such as pixel-spaces. We approach the problem by leveraging unsupervised skill discovery and self-supervised learning of state representations.</p>
+                        </div>  
+                    </a>
+                    <br>
                     <!-- This is a publication -->
                     <a href="https://imatge.upc.edu/web/sites/default/files/pub/cCreus.pdf" target="_blank">
                         <div class = "box publication">
                             <p class = "title is-5"> PixelEDL: Unsupervised Skill Discovery and Learning from Pixels </p>
                             <p class = "subtitle is-6"><strong>Roger Creus Castanyer</strong>, Juan José Nieto, Xavier Giró-i-Nieto</p>
+                            <p style="font-weight: 600;">Accepted at Embodied AI workshop @ CVPR 2021.</p>
+                            <br>
+                            <p style="font-weight: 600;">Abstract</p>
                             <p>We tackle embodied visual navigation in a task-agnostic set-up by putting the focus on the unsupervised discovery of skills that provide a good coverage of states. Our approach intersects with empowerment: we address the reward-free skill discovery and learning tasks to discover what can be done in an environment and how.</p>
                         </div>  
                     </a>
@@ -201,16 +260,10 @@
                         <div class = "box publication">
                             <p class = "title is-5"> Which Design Decisions in AI-enabled Mobile Applications Contribute to Greener AI? </p>
                             <p class = "subtitle is-6"> <strong>Roger Creus Castanyer</strong>, Silverio Martínez-Fernández, Xavier Franch</p>
+                            <p style="font-weight: 600;">Accepted at EMSE Journal</p>
+                            <br>
+                            <p style="font-weight: 600;">Abstract</p>
                             <p>The construction, evolution and usage of complex artificial intelligence (AI) models demand expensive computational resources. While currently available high-performance computing environments support well this complexity, the deployment of AI models in mobile devices, which is an increasing trend, is challenging.  Our objective is to systematically assess the trade-off between accuracy and complexity when deploying complex AI models (e.g. neural networks) to mobile devices, which have an implicit resource limitation.</p>
-                        </div>  
-                    </a>
-                    <br>
-                    <!-- This is a publication -->
-                    <a href="https://aclanthology.org/2020.webnlg-1.5.pdf" target="_blank">
-                        <div class = "box publication">
-                            <p class = "title is-5"> Enhancing sequence-to-sequence modelling for RDF triples to natural text </p>
-                            <p class = "subtitle is-6">Oriol Domingo, David Bergés, Roser Cantenys, <strong>Roger Creus Castanyer</strong>, José Adrian Rodríguez Fonollosa</p>
-                            <p>This work establishes key guidelines on how, which and when Machine Translation (MT) techniques are worth applying to RDF-to-Text task. Not only do we apply and compare the most prominent MT architecture, the Transformer, but we also analyze state-of-the-art techniques such as Byte Pair Encoding or Back Translation to demonstrate an improvement in generalization.</p>
                         </div>  
                     </a>
                     <br>
@@ -231,13 +284,20 @@
         <div class = "container">
             <div class = "columns">
                 <div class = "column">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/uclhK0L6mb0?si=SSs7OnxSl4RZF0CR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
                     <iframe width="500rem" height="315" src="https://www.youtube.com/embed/zv30OKb4nDE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <br>
-                    <br>
-                    <iframe width="500rem" height="315" src="https://www.youtube.com/embed/bRDTU5YtaSQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <div class = "column">
                     <iframe width="500rem" height="315" src="https://www.youtube.com/embed/9GxBfwnOwDQ?start=1301" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <iframe width="500rem" height="315" src="https://www.youtube.com/embed/bRDTU5YtaSQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
 
@@ -249,32 +309,23 @@
             <div class = "columns">
                 <div class = "column">
                     <!-- This is a publication -->
+                    <a href="https://github.com/roger-creus/centralized-control-lux" target="_blank">
+                        <div class = "box publication">
+                            <p class = "title is-5"> Centralized control for multi-agent RL in a complex Real-Time-Strategy game </p>
+                            <p> This repository contains the source code for the project "Centralized control for multi-agent RL in a complex Real-Time-Strategy game", which was submitted as the final project in the COMP579 - Reinforcement Learning course at McGill given by Prof. Doina Precup in Winter 2023. </p>
+                        </div>  
+                    </a>
+                    <br>
+                    <!-- This is a publication -->
                     <a href="https://github.com/yuyecreus/Ball-Sort-Learning-Environment" target="_blank">
                         <div class = "box publication">
                             <p class = "title is-5"> Ball Sort RL Learning Environment </p>
                             <p> This project provides a Reinforcement Learning Environment for the Ball Sort Color Puzzle Game. The environment is based on the Open AI's Gym framework. It also provides baseline Deep Reinforcement Learning models that solve some levels of the game. </p>
                         </div>  
                     </a>
-                    <br>
-                    <!-- This is a publication -->
-                    <a href="https://github.com/yuyecreus/MAE-Neuroevolution" target="_blank">
-                        <div class = "box publication">
-                            <p class = "title is-5"> Learning to play a simple game with Genetic Neuroevolution </p>
-                            <p> This project provides an implementation of a Genetic Neuroevolution algorithm in Matlab that learns to play a custom game. </p>
-                        </div>  
-                    </a>
-                    <br>
                 </div>
             
                 <div class = "column">
-                    <!-- This is a publication -->
-                    <a href="https://librelo.xyz/" target="_blank">
-                        <div class = "box publication">
-                            <p class = "title is-5"> Librelo </p>
-                            <p>Librelo is a digital community for Catalan writters to publish, share and compete. It features: (1) a digital space to create and publish writings; (2) a social network and community of users; and (3) periodic writing contests.</p>
-                        </div>  
-                    </a>
-                    <br>
                     <!-- This is a publication -->
                     <a href="https://github.com/yuyecreus/Wave-Defense-Learning-Environment" target="_blank">
                         <div class = "box publication">
@@ -284,6 +335,29 @@
                         </div>  
                     </a>
                     <br>
+                     <!-- This is a publication -->
+                     <a href="https://github.com/yuyecreus/MAE-Neuroevolution" target="_blank">
+                        <div class = "box publication">
+                            <p class = "title is-5"> Learning to play a simple game with Genetic Neuroevolution </p>
+                            <p> This project provides an implementation of a Genetic Neuroevolution algorithm in Matlab that learns to play a custom game. </p>
+                        </div>  
+                    </a>
+                    <br>
+                    <!-- This is a publication -->
+                    <a href="https://librelo.xyz/" target="_blank">
+                        <div class = "box publication">
+                            <p class = "title is-5"> Librelo </p>
+                            <p>Librelo is a digital community for Catalan writters to publish, share and compete. It features: (1) a digital space to create and publish writings; (2) a social network and community of users; and (3) periodic writing contests.</p>
+                        </div>  
+                    </a>
+                </div>
+                <div class = "column">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/bx5QVWGaPG4?si=WiRZE-1QlToeqhct" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/PiYwwDsPQOI?si=cliucRNua3ew5I6I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
