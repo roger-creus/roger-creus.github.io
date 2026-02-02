@@ -1,46 +1,36 @@
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1a1a2e">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <link rel="stylesheet" href="main.css">
-    <title>RCC</title>
+    <title>Roger Creus Castanyer</title>
 </head>
 <body>
     <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-menu is-active">
-            <div class = "navbar-start">
-                <a class="navbar-item">
-                    <p class = "subtitle">Roger Creus Castanyer</p>
-                </a> 
-            </div>
+        <div class="navbar-brand">
+            <a class="navbar-item" href="#aboutme">
+                <span class="navbar-name">Roger Creus Castanyer</span>
+            </a>
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+        <div id="navMenu" class="navbar-menu">
             <div class="navbar-end">
-                <a class="navbar-item" href="#aboutme">
-                About me
-                </a>
-
-                <a class="navbar-item" href="#news">
-                News
-                </a>
-
-                <a class="navbar-item" href="#publications">
-                Publications
-                </a>
-
-                <!--
-                <a class="navbar-item" href = "#talks">
-                    Talks
-                </a>
-                -->
-
-                <a class="navbar-item" href = "#projects">
-                    Projects
-                </a>
-
-
+                <a class="navbar-item" href="#aboutme">About me</a>
+                <a class="navbar-item" href="#news">News</a>
+                <a class="navbar-item" href="#publications">Publications</a>
+                <a class="navbar-item" href="#projects">Projects</a>
             </div>
         </div>
     </nav>
-    <br>
+    <main class="main-content">
     <div class = "section">
         <div class = "container" id = "aboutme">
             <div class = "columns is-variable is-8">
@@ -131,6 +121,9 @@
                                 <p class = "title is-5">Experience</p>
                                 <ul>
                                     <li>
+                                        Research Intern @ Vmax AI
+                                    </li>
+                                    <li>
                                         Research Intern @ Ubisoft LaForge
                                     </li>
                                     <li>
@@ -159,12 +152,15 @@
             <div class="content">
                 <ul class="news-list">
                     <li class="news-item">
-                        <strong>October 2025:</strong>
+                        <strong>January 2026:</strong>
                         <b>
                             <a href="https://arxiv.org/abs/2510.14176" target="_blank">
                                 ARM-FM: Automated Reward Machines via Foundation Models for Compositional Reinforcement Learning
                             </a>
-                        </b> released as preprint.
+                        </b> accepted at <i>International Conference on Learning Representations (ICLR) 2026</i>.
+                    </li>
+                    <li class="news-item">
+                        <strong>January 2026:</strong> Started a <strong>research internship at Vmax</strong>, working on LLM post-training and synthetic data generation at scale for SWE-agents.
                     </li>
                     <li class="news-item">
                         <strong>June 2025:</strong>
@@ -294,6 +290,7 @@
                                 <div class="column">
                                     <p class="title is-5">ARM-FM: Automated Reward Machines via Foundation Models for Compositional Reinforcement Learning</p>
                                     <p class="subtitle is-6"><strong>Roger Creus Castanyer</strong>, Faisal Mohamed, Pablo Samuel Castro, Cyrus Neary, Glen Berseth</p>
+                                    <p style="font-weight: 800;">Accepted at International Conference on Learning Representations (ICLR) 2026</p>
                                     <br>
                                     <p>We present ARM-FM, a framework for automated, compositional reward design in reinforcement learning using foundation models to automatically generate reward machines (formal automata for specifying objectives) directly from natural language. By pairing high-level reasoning of foundation models with reward machines' structured formalism, ARM-FM enables robust, generalizable RL agents and demonstrates effectiveness—including zero-shot generalization—on diverse, challenging environments.</p>
                                 </div>
@@ -667,29 +664,47 @@
                     <br>
                 </div>
                 <div class = "column">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/bx5QVWGaPG4?si=WiRZE-1QlToeqhct" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/PiYwwDsPQOI?si=cliucRNua3ew5I6I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube-nocookie.com/embed/bx5QVWGaPG4" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube-nocookie.com/embed/PiYwwDsPQOI" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</main>
 </body>
 
 <script>
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
+    // Navbar burger toggle (mobile)
+    document.addEventListener('DOMContentLoaded', function () {
+        var burger = document.querySelector('.navbar-burger');
+        var menu = document.getElementById('navMenu');
+        if (burger && menu) {
+            burger.addEventListener('click', function () {
+                burger.classList.toggle('is-active');
+                menu.classList.toggle('is-active');
+            });
+            document.querySelectorAll('.navbar-menu .navbar-item').forEach(function (item) {
+                item.addEventListener('click', function () {
+                    burger.classList.remove('is-active');
+                    menu.classList.remove('is-active');
+                });
+            });
+        }
+    });
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+        anchor.addEventListener('click', function (e) {
+            var href = this.getAttribute('href');
+            if (href === '#') return;
+            e.preventDefault();
+            var target = document.querySelector(href);
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
     });
-});
-
 </script>
 
 
