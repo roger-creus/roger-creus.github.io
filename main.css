@@ -56,7 +56,7 @@ a:focus-visible, button:focus-visible {
 
 /* ===== Layout ===== */
 .wrap {
-    max-width: 720px;
+    max-width: 800px;
     margin: 0 auto;
     padding: 0 1.5rem;
 }
@@ -273,7 +273,7 @@ a:focus-visible, button:focus-visible {
 .hero {
     display: grid;
     grid-template-columns: auto 1fr;
-    gap: 3rem;
+    gap: 2.5rem;
     align-items: start;
 }
 
