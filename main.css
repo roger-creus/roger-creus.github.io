@@ -12,6 +12,10 @@
     --sans: 'Inter', system-ui, -apple-system, sans-serif;
     --serif: 'Source Serif 4', Georgia, serif;
     --nav-h: 56px;
+    /* black hole hero palette */
+    --void: #07070a;
+    --cream: #f4ecd8;
+    --gold: #f2a440;
 }
 
 /* ===== Reset & Base ===== */
@@ -79,18 +83,22 @@ a:focus-visible, button:focus-visible {
 
 /* ===== Navbar ===== */
 .nav {
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 100;
-    background: rgba(250, 250, 250, 0.8);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: transparent;
     border-bottom: 1px solid transparent;
-    transition: border-color 0.3s;
+    transition: background 0.4s, border-color 0.4s, backdrop-filter 0.4s;
     height: var(--nav-h);
 }
 
-.nav.scrolled {
+/* frosted-white once scrolled past the black hole band */
+.nav--solid {
+    background: rgba(250, 250, 250, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-bottom-color: var(--border);
 }
 
@@ -100,21 +108,13 @@ a:focus-visible, button:focus-visible {
     padding: 0 1.5rem;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     height: 100%;
 }
 
-.nav__brand {
-    font-family: var(--serif);
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: var(--text);
-}
-.nav__brand:hover { color: var(--text); }
-
 .nav__links {
     display: flex;
-    gap: 0.25rem;
+    gap: 0.5rem;
 }
 
 .nav__link {
@@ -122,11 +122,21 @@ a:focus-visible, button:focus-visible {
     padding: 0.5rem 0.75rem;
     font-size: 0.9rem;
     font-weight: 500;
-    color: var(--text-secondary);
+    /* cream + soft shadow while floating over the band */
+    color: rgba(244, 236, 216, 0.78);
+    text-shadow: 0 1px 14px rgba(0, 0, 0, 0.5);
     transition: color 0.2s;
 }
-.nav__link:hover { color: var(--text); }
-.nav__link.active { color: var(--accent); }
+.nav__link:hover { color: var(--cream); }
+.nav__link.active { color: #fff; }
+
+/* solid state reverts to the light-page palette */
+.nav--solid .nav__link {
+    color: var(--text-secondary);
+    text-shadow: none;
+}
+.nav--solid .nav__link:hover { color: var(--text); }
+.nav--solid .nav__link.active { color: var(--accent); }
 
 .nav__link::after {
     content: '';
@@ -135,10 +145,11 @@ a:focus-visible, button:focus-visible {
     left: 0.75rem;
     right: 0.75rem;
     height: 2px;
-    background: var(--accent);
+    background: var(--gold);
     transform: scaleX(0);
     transition: transform 0.25s ease;
 }
+.nav--solid .nav__link::after { background: var(--accent); }
 .nav__link:hover::after,
 .nav__link.active::after {
     transform: scaleX(1);
@@ -165,14 +176,98 @@ a:focus-visible, button:focus-visible {
     display: block;
     width: 22px;
     height: 2px;
-    background: var(--text);
+    background: var(--cream);
     border-radius: 2px;
-    transition: transform 0.3s, opacity 0.3s;
+    transition: transform 0.3s, opacity 0.3s, background 0.3s;
 }
+.nav--solid .nav__burger span,
+.nav__burger.open span { background: var(--text); }
 
 .nav__burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .nav__burger.open span:nth-child(2) { opacity: 0; }
 .nav__burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ===== Black hole hero band ===== */
+.hero-band {
+    position: relative;
+    width: 100%;
+    height: 34vh;
+    min-height: 230px;
+    max-height: 460px;
+    background: var(--void);
+    overflow: hidden;
+}
+
+/* static fallback (reduced-motion / no WebGL); the canvas draws over it */
+.hero-band__fallback {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(120% 90% at 50% 46%, #1a130a 0%, #0b0a0e 45%, #07070a 100%);
+}
+
+#bh {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    opacity: 0;
+    transition: opacity 1000ms ease;
+}
+
+/* cosmic → paper seam */
+.hero-band__fade {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 32%;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(to bottom,
+        rgba(250, 250, 250, 0) 0%,
+        rgba(250, 250, 250, 0.5) 60%,
+        var(--bg) 100%);
+}
+
+.hero-band__overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    text-align: center;
+    padding: 0 1.5rem;
+    pointer-events: none;
+}
+
+.hero-band__name {
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.05;
+    font-size: clamp(1.5rem, 4.2vw, 2.4rem);
+    text-shadow: 0 2px 30px rgba(0, 0, 0, 0.55);
+    margin: 0;
+}
+
+.hero-band__rule {
+    display: inline-block;
+    height: 1px;
+    width: clamp(110px, 16vw, 210px);
+    margin: 0.85rem 0 0.7rem;
+    background: linear-gradient(to right, transparent, var(--gold) 30%, var(--gold) 70%, transparent);
+}
+
+.hero-band__aff {
+    font-size: 0.74rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(244, 236, 216, 0.82);
+    margin: 0;
+}
+.hero-band__aff-short { display: none; }
 
 /* ===== Hero / About ===== */
 .hero {
@@ -198,24 +293,10 @@ a:focus-visible, button:focus-visible {
     border: 3px solid #fff;
 }
 
-.hero__name {
-    font-family: var(--serif);
-    font-size: clamp(1.25rem, 3vw, 1.5rem);
-    font-weight: 700;
-    color: var(--text);
-    margin-top: 1rem;
-}
-
-.hero__affiliation {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    margin-top: 0.25rem;
-}
-
 .hero__email {
     font-size: 0.85rem;
     color: var(--text-tertiary);
-    margin-top: 0.25rem;
+    margin-top: 1rem;
 }
 
 .hero__social {
@@ -558,6 +639,13 @@ a:focus-visible, button:focus-visible {
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
     .nav__burger { display: flex; }
+    /* no brand on the left anymore — burger sits on the right */
+    .nav__inner { justify-content: flex-end; }
+
+    /* short affiliation on phones so it never clips */
+    .hero-band__aff { letter-spacing: 0.18em; }
+    .hero-band__aff-full { display: none; }
+    .hero-band__aff-short { display: inline; }
 
     .nav__links {
         position: fixed;

@@ -10,11 +10,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="main.css">
+    <noscript>
+        <style>
+            /* No JS: nav can't toggle solid on scroll — keep it legible. */
+            .nav { background: rgba(250, 250, 250, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+            .nav__link { color: var(--text-secondary); text-shadow: none; }
+            .nav__link::after { background: var(--accent); }
+            .nav__burger span { background: var(--text); }
+        </style>
+    </noscript>
 </head>
 <body>
     <nav class="nav" id="nav">
         <div class="nav__inner">
-            <a href="#about" class="nav__brand">Roger Creus Castanyer</a>
             <button class="nav__burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
                 <span></span><span></span><span></span>
             </button>
@@ -28,14 +36,27 @@
     </nav>
 
     <main>
+        <!-- ===== Black hole hero band ===== -->
+        <header class="hero-band" id="heroBand" aria-label="Roger Creus Castanyer">
+            <div class="hero-band__fallback" aria-hidden="true"></div>
+            <canvas id="bh" aria-hidden="true"></canvas>
+            <div class="hero-band__fade" aria-hidden="true"></div>
+            <div class="hero-band__overlay">
+                <h1 class="hero-band__name">Roger Creus Castanyer</h1>
+                <span class="hero-band__rule" aria-hidden="true"></span>
+                <p class="hero-band__aff">
+                    <span class="hero-band__aff-full">PhD Student · Mila &amp; Université de Montréal</span>
+                    <span class="hero-band__aff-short">PhD Student · Mila / UdeM</span>
+                </p>
+            </div>
+        </header>
+
         <!-- ===== About ===== -->
         <section id="about" class="section fade-in">
             <div class="wrap">
                 <div class="hero">
                     <div class="hero__sidebar">
                         <img src="./pics/personal.jpg" alt="Roger Creus Castanyer" class="hero__photo">
-                        <h1 class="hero__name">Roger Creus Castanyer</h1>
-                        <p class="hero__affiliation">PhD Student @ Mila / UdeM</p>
                         <p class="hero__email">creus99@protonmail.com</p>
                         <div class="hero__social">
                             <a href="https://twitter.com/creus_roger" target="_blank" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
@@ -451,12 +472,19 @@
     <script>
     document.addEventListener('DOMContentLoaded', () => {
         const nav = document.getElementById('nav');
+        const heroBand = document.getElementById('heroBand');
         const burger = document.getElementById('navBurger');
         const links = document.getElementById('navLinks');
         const navItems = links.querySelectorAll('.nav__link');
 
-        // Navbar scroll effect
-        const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 10);
+        // Navbar: transparent (cream) over the black hole band, frosted-white
+        // once scrolled past it. Threshold tracks the band's bottom edge.
+        const NAV_H = 56;
+        let solidAt = 0;
+        const measure = () => { solidAt = (heroBand ? heroBand.offsetHeight : 0) - NAV_H; };
+        const onScroll = () => nav.classList.toggle('nav--solid', window.scrollY > solidAt);
+        measure();
+        window.addEventListener('resize', () => { measure(); onScroll(); });
         window.addEventListener('scroll', onScroll, { passive: true });
         onScroll();
 
@@ -529,5 +557,6 @@
         });
     });
     </script>
+    <script src="blackhole.js"></script>
 </body>
 </html>
