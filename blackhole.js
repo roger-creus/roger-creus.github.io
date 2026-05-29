@@ -210,9 +210,8 @@
         // there. The same factor scales both axes, so pixels stay square and the
         // image never distorts. Wide desktop bands are unaffected.
         float fov = uFovTan;
-        float yShift = 0.0;
-        if (fov * uAspect < 0.78) { fov = 0.78 / uAspect; yShift = 0.24; }
-        vec3 rayLocal = vec3(ndc.x * fov, (ndc.y + yShift) * fov, -1.0);
+        if (fov * uAspect < 0.78) fov = 0.78 / uAspect;
+        vec3 rayLocal = vec3(ndc.x * fov, ndc.y * fov, -1.0);
         vec3 rayDir = normalize(uCameraBasis * rayLocal);
         vec3 rayOrigin = uCameraPos;
 
@@ -401,7 +400,10 @@
     gl.uniform1f(uExp, 0.95);
 
     // ── sizing ────────────────────────────────────────────────────────────
-    var quality = mobile ? 70 : 110;
+    // Integration steps must stay high on every device: the strongly-lensed
+    // top arc of the disk needs ~110 steps to trace. Mobile recovers
+    // performance via a lower pixel ratio, never by cutting steps.
+    var quality = 110;
     var dprCap = mobile ? 1.0 : 1.5;
     function resize() {
       var dpr = Math.min(window.devicePixelRatio || 1, dprCap);
@@ -447,9 +449,9 @@
         if (frames === 90) {
           var s = samples.slice(40).sort(function (a, b) { return a - b; });
           var med = s[s.length >> 1] || 16;
-          if (med > 22 && quality > 50) {
-            quality = Math.max(50, Math.round(quality * 0.7));
-            dprCap = Math.min(dprCap, 1.0);
+          if (med > 22) {
+            // recover performance by lowering resolution, not integration steps
+            dprCap = Math.max(0.6, dprCap * 0.7);
             resize();
           }
         }
