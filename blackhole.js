@@ -205,7 +205,13 @@
       void main() {
         vec2 ndc = vUv * 2.0 - 1.0;
         ndc.x *= uAspect;
-        vec3 rayLocal = vec3(ndc.x * uFovTan, ndc.y * uFovTan, -1.0);
+        // Fit-to-frame: on narrow (portrait / mobile) bands the horizontal field
+        // of view gets tight and the disk would crop at the sides, so zoom out
+        // there. The same factor scales both axes, so pixels stay square and the
+        // image never distorts. Wide desktop bands are unaffected.
+        float fov = uFovTan;
+        if (fov * uAspect < 0.78) fov = 0.78 / uAspect;
+        vec3 rayLocal = vec3(ndc.x * fov, ndc.y * fov, -1.0);
         vec3 rayDir = normalize(uCameraBasis * rayLocal);
         vec3 rayOrigin = uCameraPos;
 
