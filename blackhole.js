@@ -1,5 +1,5 @@
 /* ============================================================================
- * blackhole.js — a Schwarzschild geodesic ray-traced black hole, rendered as a
+ * blackhole.js: a Schwarzschild geodesic ray-traced black hole, rendered as a
  * compact hero band at the top of the page.
  *
  * Dependency-free vanilla WebGL (WebGL1 / ESSL 1.00). The fragment shader is a
@@ -8,7 +8,7 @@
  * gravitational redshift + blackbody colour), and renders a procedural
  * starfield behind it.
  *
- * Self-initialising: looks for <canvas id="bh">. Degrades gracefully — if the
+ * Self-initialising: looks for <canvas id="bh">. Degrades gracefully: if the
  * browser has no WebGL or the visitor prefers reduced motion, it does nothing
  * and the CSS fallback gradient (.hero-band__fallback) shows instead.
  * ========================================================================== */

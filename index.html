@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#fafafa">
-    <title>Roger Creus Castanyer — PhD Student, RL &amp; Foundation Models</title>
+    <title>Roger Creus Castanyer · PhD Student, RL &amp; Foundation Models</title>
     <meta name="description" content="Roger Creus Castanyer is a PhD student at Mila &amp; Université de Montréal researching general, autonomous agents at the intersection of deep reinforcement learning and foundation models.">
     <meta name="author" content="Roger Creus Castanyer">
     <link rel="canonical" href="https://roger-creus.github.io/">
     <!-- Open Graph / Twitter share cards -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://roger-creus.github.io/">
-    <meta property="og:title" content="Roger Creus Castanyer — PhD Student, RL &amp; Foundation Models">
+    <meta property="og:title" content="Roger Creus Castanyer · PhD Student, RL &amp; Foundation Models">
     <meta property="og:description" content="PhD student at Mila &amp; Université de Montréal researching general, autonomous agents at the intersection of deep reinforcement learning and foundation models.">
     <meta property="og:image" content="https://roger-creus.github.io/pics/personal.jpg">
     <meta property="og:image:alt" content="Roger Creus Castanyer">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:creator" content="@creus_roger">
-    <meta name="twitter:title" content="Roger Creus Castanyer — PhD Student, RL &amp; Foundation Models">
+    <meta name="twitter:title" content="Roger Creus Castanyer · PhD Student, RL &amp; Foundation Models">
     <meta name="twitter:description" content="PhD student at Mila &amp; Université de Montréal researching general, autonomous agents at the intersection of deep RL and foundation models.">
     <meta name="twitter:image" content="https://roger-creus.github.io/pics/personal.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="main.css">
     <noscript>
         <style>
-            /* No JS: nav can't toggle solid on scroll — keep it legible. */
+            /* No JS: nav can't toggle solid on scroll, so keep it legible. */
             .nav { background: rgba(250, 250, 250, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
             .nav__link { color: var(--text-secondary); text-shadow: none; }
             .nav__link::after { background: var(--accent); }
@@ -93,18 +93,8 @@
 
                         <h2>Research</h2>
                         <p>
-                            I work on <strong>post-training large language models</strong> into capable, autonomous agents. My background is in classical and <strong>deep reinforcement learning</strong>, which I'm increasingly bringing to <strong>agentic LLMs</strong> — using RL to turn foundation models from passive predictors into agents that plan, act, and improve in sequential decision-making. I'm especially interested in <strong>evaluation, synthetic data generation, and curriculum learning</strong> for these agents: the benchmarks and self-improving training loops that turn broad pretrained knowledge into reliable, autonomous behavior.
+                            I work on <strong>post-training large language models</strong> into capable, autonomous agents. My background is in classical and <strong>deep reinforcement learning</strong>, which I'm increasingly bringing to <strong>agentic LLMs</strong>, using RL to turn foundation models from passive predictors into agents that plan, act, and improve in sequential decision-making. I'm especially interested in <strong>evaluation, synthetic data generation, and curriculum learning</strong> for these agents: the benchmarks and self-improving training loops that turn broad pretrained knowledge into reliable, autonomous behavior.
                         </p>
-
-                        <h2>Interests</h2>
-                        <div class="pills">
-                            <span class="pill">Agentic LLMs</span>
-                            <span class="pill">LLM Post-Training (RLVR)</span>
-                            <span class="pill">Deep Reinforcement Learning</span>
-                            <span class="pill">Synthetic Data Generation</span>
-                            <span class="pill">Curriculum Learning</span>
-                            <span class="pill">Evals &amp; Benchmarks</span>
-                        </div>
 
                         <h2>Experience</h2>
                         <ul class="experience-list">
@@ -129,7 +119,11 @@
                 <div class="news-list">
                     <div class="news-item">
                         <span class="news-date">May 2026</span>
-                        <span class="news-text"><a href="https://arxiv.org/abs/2605.16727" target="_blank"><strong>PopuLoRA</strong></a> — population-based self-play for RLVR post-training of LLMs — is out on arXiv.</span>
+                        <span class="news-text"><a href="https://arxiv.org/abs/2605.16727" target="_blank"><strong>PopuLoRA</strong></a>, population-based self-play for RLVR post-training of LLMs, is out on arXiv.</span>
+                    </div>
+                    <div class="news-item">
+                        <span class="news-date">May 2026</span>
+                        <span class="news-text"><a href="https://arxiv.org/abs/2605.06869" target="_blank"><strong>Agentick</strong></a>, a unified benchmark for sequential decision-making agents, is out on arXiv.</span>
                     </div>
                     <div class="news-item">
                         <span class="news-date">Apr 2026</span>
@@ -147,7 +141,7 @@
                         <span class="news-date">Jun 2025</span>
                         <span class="news-text"><a href="https://arxiv.org/pdf/2506.15544" target="_blank"><strong>Stable Gradients</strong></a> published at <em>NeurIPS 2025</em> as <strong>Spotlight (top 3%)</strong>.</span>
                     </div>
-                    <div class="news-item">
+                    <div class="news-item news-item--hidden">
                         <span class="news-date">Feb 2025</span>
                         <span class="news-text">Obtained the <strong>AI Research Scholarship</strong> from Université de Montréal.</span>
                     </div>
@@ -246,7 +240,7 @@
                             <p class="pub-card__venue">Preprint · 2026</p>
                             <details class="pub-card__details">
                                 <summary>Abstract</summary>
-                                <p class="pub-card__abstract">AI agent research spans a wide spectrum, from RL agents that learn from scratch to foundation-model agents that leverage pre-trained knowledge, yet no unified benchmark enables fair comparison across these approaches. We present Agentick, a benchmark for sequential decision-making agents designed to evaluate RL, LLM, VLM, hybrid, and human agents on common ground. It provides 37 procedurally generated tasks across six capability categories, four difficulty levels, and five observation modalities through a single Gymnasium-compatible interface, and ships with a coding API, oracle reference policies, pre-built SFT datasets, a composable agent harness, and a live leaderboard. An evaluation spanning 27 configurations and over 90,000 episodes reveals that no single approach dominates — providing the empirical infrastructure to drive progress toward general autonomous agents, both as an evaluation framework and as a training ground for RL post-training of foundation models.</p>
+                                <p class="pub-card__abstract">AI agent research spans a wide spectrum, from RL agents that learn from scratch to foundation-model agents that leverage pre-trained knowledge, yet no unified benchmark enables fair comparison across these approaches. We present Agentick, a benchmark for sequential decision-making agents designed to evaluate RL, LLM, VLM, hybrid, and human agents on common ground. It provides 37 procedurally generated tasks across six capability categories, four difficulty levels, and five observation modalities through a single Gymnasium-compatible interface, and ships with a coding API, oracle reference policies, pre-built SFT datasets, a composable agent harness, and a live leaderboard. An evaluation spanning 27 configurations and over 90,000 episodes reveals that no single approach dominates, providing the empirical infrastructure to drive progress toward general autonomous agents, both as an evaluation framework and as a training ground for RL post-training of foundation models.</p>
                             </details>
                         </div>
                     </div>
@@ -261,7 +255,7 @@
                             <p class="pub-card__venue">ICLR 2026</p>
                             <details class="pub-card__details">
                                 <summary>Abstract</summary>
-                                <p class="pub-card__abstract">We present ARM-FM, a framework for automated, compositional reward design in reinforcement learning using foundation models to automatically generate reward machines (formal automata for specifying objectives) directly from natural language. By pairing high-level reasoning of foundation models with reward machines' structured formalism, ARM-FM enables robust, generalizable RL agents and demonstrates effectiveness—including zero-shot generalization—on diverse, challenging environments.</p>
+                                <p class="pub-card__abstract">We present ARM-FM, a framework for automated, compositional reward design in reinforcement learning using foundation models to automatically generate reward machines (formal automata for specifying objectives) directly from natural language. By pairing high-level reasoning of foundation models with reward machines' structured formalism, ARM-FM enables robust, generalizable RL agents and demonstrates effectiveness, including zero-shot generalization, on diverse, challenging environments.</p>
                             </details>
                         </div>
                     </div>
@@ -473,11 +467,11 @@
                 <div class="project-grid">
                     <a href="https://github.com/roger-creus/agentick" target="_blank" class="project-card">
                         <p class="project-card__title">Agentick</p>
-                        <p class="project-card__desc">A universal benchmark for evaluating sequential decision-making agents — RL, LLM, VLM, hybrid, and human — across 37 procedurally generated tasks, five observation modalities, oracle datasets, and a live leaderboard.</p>
+                        <p class="project-card__desc">A universal benchmark for evaluating sequential decision-making agents (RL, LLM, VLM, hybrid, and human) across 37 procedurally generated tasks, five observation modalities, oracle datasets, and a live leaderboard.</p>
                     </a>
                     <a href="https://github.com/roger-creus/stable-deep-rl-at-scale" target="_blank" class="project-card">
                         <p class="project-card__title">Stable Deep RL at Scale</p>
-                        <p class="project-card__desc">Official code for our NeurIPS 2025 Spotlight, "Stable Gradients for Stable Learning at Scale in Deep RL" — simple interventions that stabilize gradient flow so deep RL networks scale across many environments.</p>
+                        <p class="project-card__desc">Official code for our NeurIPS 2025 Spotlight, "Stable Gradients for Stable Learning at Scale in Deep RL": simple interventions that stabilize gradient flow so deep RL networks scale across many environments.</p>
                     </a>
                     <a href="https://github.com/roger-creus/xgenius" target="_blank" class="project-card">
                         <p class="project-card__title">xgenius</p>
@@ -489,7 +483,7 @@
                     </a>
                     <a href="https://github.com/roger-creus/centralized-control-lux" target="_blank" class="project-card">
                         <p class="project-card__title">Centralized Control for Multi-Agent RL</p>
-                        <p class="project-card__desc">Centralized control for multi-agent RL in a complex Real-Time-Strategy game. Final project for COMP579 — Reinforcement Learning at McGill (Prof. Doina Precup, Winter 2023).</p>
+                        <p class="project-card__desc">Centralized control for multi-agent RL in a complex Real-Time-Strategy game. Final project for COMP579: Reinforcement Learning at McGill (Prof. Doina Precup, Winter 2023).</p>
                     </a>
                     <a href="https://github.com/RLE-Foundation/rllte" target="_blank" class="project-card">
                         <p class="project-card__title">RLLTE</p>

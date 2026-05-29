@@ -350,22 +350,6 @@ a:focus-visible, button:focus-visible {
     margin-right: 0.25rem;
 }
 
-.pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-}
-
-.pill {
-    padding: 0.3rem 0.75rem;
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: var(--accent);
-    background: var(--accent-subtle);
-    border-radius: 100px;
-}
-
 .experience-list { margin-top: 0.5rem; }
 
 .experience-list li {
@@ -573,7 +557,7 @@ a:focus-visible, button:focus-visible {
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
     .nav__burger { display: flex; }
-    /* no brand on the left anymore — burger sits on the right */
+    /* no brand on the left anymore, so the burger sits on the right */
     .nav__inner { justify-content: flex-end; }
 
     /* short affiliation on phones so it never clips */
@@ -623,7 +607,6 @@ a:focus-visible, button:focus-visible {
     .hero__content h2 { text-align: left; }
     .hero__content p { text-align: left; }
     .hero__location { text-align: left; }
-    .pills { justify-content: center; }
     .experience-list { text-align: left; }
 
     .news-item {
