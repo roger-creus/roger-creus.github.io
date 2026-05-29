@@ -368,12 +368,19 @@ a:focus-visible, button:focus-visible {
 
 /* small, muted company marks (mixed sources unified to a transparent look) */
 .exp-logo {
-    width: 18px;
-    height: 18px;
+    width: 14px;
+    height: 14px;
     object-fit: contain;
     flex: none;
     filter: grayscale(1);
     opacity: 0.55;
+}
+
+/* Experience / Education side by side */
+.cv-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
 }
 
 /* ===== News ===== */
@@ -441,9 +448,9 @@ a:focus-visible, button:focus-visible {
 
 .pub-card:hover { background: var(--accent-subtle); }
 
-/* show only the top 8 publications until expanded */
-.pub-card:nth-child(n+9) { display: none; }
-.pub-list.show-all .pub-card:nth-child(n+9) { display: grid; }
+/* show only the top 8 publications until expanded (same pattern as News) */
+.pub-card--hidden { display: none; }
+.pub-card--hidden.visible { display: grid; }
 
 .pub-card__img {
     width: 120px;
@@ -625,6 +632,7 @@ a:focus-visible, button:focus-visible {
     .hero__content p { text-align: left; }
     .hero__location { text-align: left; }
     .experience-list { text-align: left; }
+    .cv-cols { grid-template-columns: 1fr; gap: 0; }
 
     .news-item {
         grid-template-columns: 1fr;
