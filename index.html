@@ -72,7 +72,7 @@
                 <div class="hero">
                     <div class="hero__sidebar">
                         <img src="./pics/personal.jpg" alt="Roger Creus Castanyer" class="hero__photo">
-                        <a class="hero__email" href="mailto:creus99@protonmail.com">creus99@protonmail.com</a>
+                        <p class="hero__email">creus99 [at] protonmail [dot] com</p>
                         <div class="hero__social">
                             <a href="https://twitter.com/creus_roger" target="_blank" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
                             <a href="https://scholar.google.ca/citations?hl=en&user=E3y_txsAAAAJ" target="_blank" aria-label="Google Scholar"><i class="fa-solid fa-user-graduate"></i></a>
@@ -93,14 +93,17 @@
 
                         <h2>Research</h2>
                         <p>
-                            My research centers on <strong>general, autonomous agents</strong> built on <strong>Deep Reinforcement Learning (RL)</strong> and <strong>Foundation Models (LLMs, VLMs)</strong>. I explore how to integrate the structured learning and adaptability of RL with the broad priors and reasoning abilities of foundation models — using them to improve exploration, credit assignment, and skill discovery. I'm particularly interested in how RL can make foundation models more agentic, unifying reasoning and control for general-purpose AI agents.
+                            I work on <strong>post-training large language models</strong> into capable, autonomous agents. My background is in classical and <strong>deep reinforcement learning</strong>, which I'm increasingly bringing to <strong>agentic LLMs</strong> — using RL to turn foundation models from passive predictors into agents that plan, act, and improve in sequential decision-making. I'm especially interested in <strong>evaluation, synthetic data generation, and curriculum learning</strong> for these agents: the benchmarks and self-improving training loops that turn broad pretrained knowledge into reliable, autonomous behavior.
                         </p>
 
                         <h2>Interests</h2>
                         <div class="pills">
+                            <span class="pill">Agentic LLMs</span>
+                            <span class="pill">LLM Post-Training (RLVR)</span>
                             <span class="pill">Deep Reinforcement Learning</span>
-                            <span class="pill">Foundation Models (LLMs, VLMs)</span>
-                            <span class="pill">AI Agents</span>
+                            <span class="pill">Synthetic Data Generation</span>
+                            <span class="pill">Curriculum Learning</span>
+                            <span class="pill">Evals &amp; Benchmarks</span>
                         </div>
 
                         <h2>Experience</h2>
@@ -125,6 +128,10 @@
                 <h2 class="section-title">News</h2>
                 <div class="news-list">
                     <div class="news-item">
+                        <span class="news-date">May 2026</span>
+                        <span class="news-text"><a href="https://arxiv.org/abs/2605.16727" target="_blank"><strong>PopuLoRA</strong></a> — population-based self-play for RLVR post-training of LLMs — is out on arXiv.</span>
+                    </div>
+                    <div class="news-item">
                         <span class="news-date">Apr 2026</span>
                         <span class="news-text">Awarded the <strong>Doctoral Research Scholarship (B2)</strong> for PhD studies from the <em>Fonds de Recherche du Québec (FRQNT)</em>.</span>
                     </div>
@@ -144,7 +151,7 @@
                         <span class="news-date">Feb 2025</span>
                         <span class="news-text">Obtained the <strong>AI Research Scholarship</strong> from Université de Montréal.</span>
                     </div>
-                    <div class="news-item">
+                    <div class="news-item news-item--hidden">
                         <span class="news-date">Dec 2024</span>
                         <span class="news-text">Obtained the <strong>Academic Excellence Scholarship</strong> from Université de Montréal.</span>
                     </div>
@@ -213,6 +220,36 @@
             <div class="wrap">
                 <h2 class="section-title">Publications</h2>
                 <div class="pub-list">
+
+                    <div class="pub-card">
+                        <a href="https://arxiv.org/abs/2605.16727" target="_blank" class="pub-card__img-link">
+                            <img src="pics/populora.png" alt="PopuLoRA" class="pub-card__img">
+                        </a>
+                        <div class="pub-card__body">
+                            <a href="https://arxiv.org/abs/2605.16727" target="_blank" class="pub-card__title">PopuLoRA: Co-Evolving LLM Populations for Reasoning Self-Play</a>
+                            <p class="pub-card__authors"><strong>Roger Creus Castanyer</strong>, Geoffrey Bradway, Lorenz Wolf, Maxwill Lin, Augustine N. Mavor-Parker, Matthew James Sargent</p>
+                            <p class="pub-card__venue">Preprint · 2026</p>
+                            <details class="pub-card__details">
+                                <summary>Abstract</summary>
+                                <p class="pub-card__abstract">We introduce PopuLoRA, a population-based asymmetric self-play framework for reinforcement learning with verifiable rewards (RLVR) post-training of LLMs. Teachers and students are specialised LoRA adapters on a shared frozen base: teachers propose problems, matched students solve them under a programmatic verifier, and cross-evaluation between sub-populations replaces the self-calibration that limits single-agent self-play. A family of LoRA weight-space evolution operators (mutations and crossovers that produce same-rank population members in seconds) serves as the replacement step of a population-based training loop at 7B scale. Where a single agent self-calibrates to generating easy problems it can reliably solve, the population enters a co-evolutionary arms race: teachers produce increasingly complex problems, student solve rates oscillate, and problem-space coverage keeps expanding throughout training. The population mean outperforms a compute-matched single-agent baseline across three code and seven math benchmarks, and even its weakest member beats the baseline on aggregate.</p>
+                            </details>
+                        </div>
+                    </div>
+
+                    <div class="pub-card">
+                        <a href="https://arxiv.org/abs/2605.06869" target="_blank" class="pub-card__img-link">
+                            <img src="pics/agentick.png" alt="Agentick" class="pub-card__img">
+                        </a>
+                        <div class="pub-card__body">
+                            <a href="https://arxiv.org/abs/2605.06869" target="_blank" class="pub-card__title">Agentick: A Unified Benchmark for General Sequential Decision-Making Agents</a>
+                            <p class="pub-card__authors"><strong>Roger Creus Castanyer</strong>, Pablo Samuel Castro, Glen Berseth</p>
+                            <p class="pub-card__venue">Preprint · 2026</p>
+                            <details class="pub-card__details">
+                                <summary>Abstract</summary>
+                                <p class="pub-card__abstract">AI agent research spans a wide spectrum, from RL agents that learn from scratch to foundation-model agents that leverage pre-trained knowledge, yet no unified benchmark enables fair comparison across these approaches. We present Agentick, a benchmark for sequential decision-making agents designed to evaluate RL, LLM, VLM, hybrid, and human agents on common ground. It provides 37 procedurally generated tasks across six capability categories, four difficulty levels, and five observation modalities through a single Gymnasium-compatible interface, and ships with a coding API, oracle reference policies, pre-built SFT datasets, a composable agent harness, and a live leaderboard. An evaluation spanning 27 configurations and over 90,000 episodes reveals that no single approach dominates — providing the empirical infrastructure to drive progress toward general autonomous agents, both as an evaluation framework and as a training ground for RL post-training of foundation models.</p>
+                            </details>
+                        </div>
+                    </div>
 
                     <div class="pub-card">
                         <a href="https://arxiv.org/abs/2510.14176" target="_blank" class="pub-card__img-link">
@@ -434,46 +471,42 @@
             <div class="wrap">
                 <h2 class="section-title">Projects</h2>
                 <div class="project-grid">
-                    <a href="https://github.com/roger-creus/centralized-control-lux" target="_blank" class="project-card">
-                        <p class="project-card__title">Centralized Control for Multi-Agent RL</p>
-                        <p class="project-card__desc">Centralized control for multi-agent RL in a complex Real-Time-Strategy game. Final project for COMP579 — Reinforcement Learning at McGill (Prof. Doina Precup, Winter 2023).</p>
+                    <a href="https://github.com/roger-creus/agentick" target="_blank" class="project-card">
+                        <p class="project-card__title">Agentick</p>
+                        <p class="project-card__desc">A universal benchmark for evaluating sequential decision-making agents — RL, LLM, VLM, hybrid, and human — across 37 procedurally generated tasks, five observation modalities, oracle datasets, and a live leaderboard.</p>
+                    </a>
+                    <a href="https://github.com/roger-creus/stable-deep-rl-at-scale" target="_blank" class="project-card">
+                        <p class="project-card__title">Stable Deep RL at Scale</p>
+                        <p class="project-card__desc">Official code for our NeurIPS 2025 Spotlight, "Stable Gradients for Stable Learning at Scale in Deep RL" — simple interventions that stabilize gradient flow so deep RL networks scale across many environments.</p>
                     </a>
                     <a href="https://github.com/roger-creus/xgenius" target="_blank" class="project-card">
                         <p class="project-card__title">xgenius</p>
                         <p class="project-card__desc">A command-line tool for managing remote jobs and containerized experiments across multiple clusters. Simplifies Docker/Singularity builds and SLURM job submission.</p>
                     </a>
-                    <a href="https://github.com/RLE-Foundation/rllte" target="_blank" class="project-card">
-                        <p class="project-card__title">RLLTE</p>
-                        <p class="project-card__desc">Long-Term Evolution Project of Reinforcement Learning.</p>
-                    </a>
                     <a href="https://github.com/roger-creus/blokus-ai" target="_blank" class="project-card">
                         <p class="project-card__title">Blokus RL Environment</p>
                         <p class="project-card__desc">An implementation of the Blokus board game environment using the Gymnasium framework, designed for training AI agents.</p>
                     </a>
-                    <a href="https://github.com/yuyecreus/Ball-Sort-Learning-Environment" target="_blank" class="project-card">
-                        <p class="project-card__title">Ball Sort RL Environment</p>
-                        <p class="project-card__desc">A Reinforcement Learning environment for the Ball Sort Color Puzzle Game based on OpenAI Gym, with baseline Deep RL models.</p>
+                    <a href="https://github.com/roger-creus/centralized-control-lux" target="_blank" class="project-card">
+                        <p class="project-card__title">Centralized Control for Multi-Agent RL</p>
+                        <p class="project-card__desc">Centralized control for multi-agent RL in a complex Real-Time-Strategy game. Final project for COMP579 — Reinforcement Learning at McGill (Prof. Doina Precup, Winter 2023).</p>
+                    </a>
+                    <a href="https://github.com/RLE-Foundation/rllte" target="_blank" class="project-card">
+                        <p class="project-card__title">RLLTE</p>
+                        <p class="project-card__desc">Long-Term Evolution Project of Reinforcement Learning.</p>
                     </a>
                     <a href="https://github.com/yuyecreus/Wave-Defense-Learning-Environment" target="_blank" class="project-card">
                         <p class="project-card__title">Wave Defense RL Environment</p>
                         <p class="project-card__desc">A Reinforcement Learning environment for a custom Wave Defense game based on OpenAI Gym, with baseline Deep RL models.</p>
                     </a>
+                    <a href="https://github.com/yuyecreus/Ball-Sort-Learning-Environment" target="_blank" class="project-card">
+                        <p class="project-card__title">Ball Sort RL Environment</p>
+                        <p class="project-card__desc">A Reinforcement Learning environment for the Ball Sort Color Puzzle Game based on OpenAI Gym, with baseline Deep RL models.</p>
+                    </a>
                     <a href="https://github.com/yuyecreus/MAE-Neuroevolution" target="_blank" class="project-card">
                         <p class="project-card__title">Genetic Neuroevolution</p>
                         <p class="project-card__desc">An implementation of a Genetic Neuroevolution algorithm in Matlab that learns to play a custom game.</p>
                     </a>
-                </div>
-
-                <p class="subsection-title">Demo Videos</p>
-                <div class="video-grid">
-                    <div class="video-thumb" data-video-id="bx5QVWGaPG4">
-                        <img src="https://img.youtube.com/vi/bx5QVWGaPG4/hqdefault.jpg" alt="Demo video">
-                        <div class="video-thumb__play"></div>
-                    </div>
-                    <div class="video-thumb" data-video-id="PiYwwDsPQOI">
-                        <img src="https://img.youtube.com/vi/PiYwwDsPQOI/hqdefault.jpg" alt="Demo video">
-                        <div class="video-thumb__play"></div>
-                    </div>
                 </div>
             </div>
         </section>
@@ -554,20 +587,6 @@
                 el.classList.toggle('visible', newsExpanded);
             });
             newsToggle.textContent = newsExpanded ? 'Show less' : 'Show all news';
-        });
-
-        // YouTube lazy load
-        document.querySelectorAll('.video-thumb').forEach(thumb => {
-            thumb.addEventListener('click', () => {
-                const id = thumb.dataset.videoId;
-                const iframe = document.createElement('iframe');
-                iframe.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1';
-                iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-                iframe.allowFullscreen = true;
-                thumb.innerHTML = '';
-                thumb.appendChild(iframe);
-                thumb.style.cursor = 'default';
-            });
         });
     });
     </script>
