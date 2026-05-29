@@ -93,7 +93,7 @@
 
                         <h2>Research</h2>
                         <p>
-                            I work on <strong>post-training large language models</strong> into capable, autonomous agents. My background is in classical and <strong>deep reinforcement learning</strong>, which I'm increasingly bringing to <strong>agentic LLMs</strong>, using RL to turn foundation models from passive predictors into agents that plan, act, and improve in sequential decision-making. I'm especially interested in <strong>evaluation, synthetic data generation, and curriculum learning</strong> for these agents: the benchmarks and self-improving training loops that turn broad pretrained knowledge into reliable, autonomous behavior.
+                            I am interested in <strong>post-training large language models</strong> into generally capable autonomous agents. My background is in <strong>classical reinforcement learning</strong>, and I work on getting these agents to plan, act, and improve in sequential decision-making. I'm especially interested in <strong>RL, synthetic data generation, and evals</strong>.
                         </p>
 
                         <h2>Experience</h2>
@@ -282,7 +282,7 @@
                         <div class="pub-card__body">
                             <a href="https://arxiv.org/abs/2310.18144" target="_blank" class="pub-card__title">Improving Intrinsic Exploration by Creating Stationary Objectives</a>
                             <p class="pub-card__authors"><strong>Roger Creus Castanyer</strong>, Joshua Romoff, Glen Berseth</p>
-                            <p class="pub-card__venue">ICLR 2024 · ALEO @ NeurIPS 2023</p>
+                            <p class="pub-card__venue">ICLR 2024</p>
                             <details class="pub-card__details">
                                 <summary>Abstract</summary>
                                 <p class="pub-card__abstract">We identify that any intrinsic reward function derived from count-based methods is non-stationary and hence induces a difficult objective to optimize for the agent. The key contribution of our work lies in transforming the original non-stationary rewards into stationary rewards through an augmented state representation. We introduce the Stationary Objectives For Exploration (SOFE) framework. Our experiments show that SOFE improves the agents' performance in challenging exploration problems, including sparse-reward tasks, pixel-based observations, 3D navigation, and procedurally generated environments.</p>
@@ -455,6 +455,7 @@
                     </div>
 
                 </div>
+                <button class="pub-toggle" id="pubToggle">Show all publications</button>
             </div>
         </section>
 
@@ -496,10 +497,6 @@
                     <a href="https://github.com/yuyecreus/Ball-Sort-Learning-Environment" target="_blank" class="project-card">
                         <p class="project-card__title">Ball Sort RL Environment</p>
                         <p class="project-card__desc">A Reinforcement Learning environment for the Ball Sort Color Puzzle Game based on OpenAI Gym, with baseline Deep RL models.</p>
-                    </a>
-                    <a href="https://github.com/yuyecreus/MAE-Neuroevolution" target="_blank" class="project-card">
-                        <p class="project-card__title">Genetic Neuroevolution</p>
-                        <p class="project-card__desc">An implementation of a Genetic Neuroevolution algorithm in Matlab that learns to play a custom game.</p>
                     </a>
                 </div>
             </div>
@@ -581,6 +578,16 @@
                 el.classList.toggle('visible', newsExpanded);
             });
             newsToggle.textContent = newsExpanded ? 'Show less' : 'Show all news';
+        });
+
+        // Publications "Show all" toggle (top 8 shown by default)
+        const pubToggle = document.getElementById('pubToggle');
+        const pubList = document.querySelector('.pub-list');
+        let pubsExpanded = false;
+        pubToggle.addEventListener('click', () => {
+            pubsExpanded = !pubsExpanded;
+            pubList.classList.toggle('show-all', pubsExpanded);
+            pubToggle.textContent = pubsExpanded ? 'Show fewer publications' : 'Show all publications';
         });
     });
     </script>

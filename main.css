@@ -395,7 +395,7 @@ a:focus-visible, button:focus-visible {
 .news-item--hidden { display: none; }
 .news-item--hidden.visible { display: grid; }
 
-.news-toggle {
+.news-toggle, .pub-toggle {
     display: inline-block;
     margin-top: 1rem;
     padding: 0;
@@ -408,7 +408,7 @@ a:focus-visible, button:focus-visible {
     cursor: pointer;
     transition: color 0.2s;
 }
-.news-toggle:hover { color: var(--accent-hover); }
+.news-toggle:hover, .pub-toggle:hover { color: var(--accent-hover); }
 
 /* ===== Publications ===== */
 .pub-list {
@@ -427,6 +427,10 @@ a:focus-visible, button:focus-visible {
 }
 
 .pub-card:hover { background: var(--accent-subtle); }
+
+/* show only the top 8 publications until expanded */
+.pub-card:nth-child(n+9) { display: none; }
+.pub-list.show-all .pub-card:nth-child(n+9) { display: grid; }
 
 .pub-card__img {
     width: 120px;

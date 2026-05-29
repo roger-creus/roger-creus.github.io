@@ -210,8 +210,9 @@
         // there. The same factor scales both axes, so pixels stay square and the
         // image never distorts. Wide desktop bands are unaffected.
         float fov = uFovTan;
-        if (fov * uAspect < 0.78) fov = 0.78 / uAspect;
-        vec3 rayLocal = vec3(ndc.x * fov, ndc.y * fov, -1.0);
+        float yShift = 0.0;
+        if (fov * uAspect < 0.78) { fov = 0.78 / uAspect; yShift = 0.24; }
+        vec3 rayLocal = vec3(ndc.x * fov, (ndc.y + yShift) * fov, -1.0);
         vec3 rayDir = normalize(uCameraBasis * rayLocal);
         vec3 rayOrigin = uCameraPos;
 
