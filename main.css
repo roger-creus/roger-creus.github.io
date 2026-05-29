@@ -294,10 +294,13 @@ a:focus-visible, button:focus-visible {
 }
 
 .hero__email {
+    display: block;
     font-size: 0.85rem;
     color: var(--text-tertiary);
     margin-top: 1rem;
+    transition: color 0.2s;
 }
+.hero__email:hover { color: var(--accent); }
 
 .hero__social {
     display: flex;
