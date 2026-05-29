@@ -353,14 +353,27 @@ a:focus-visible, button:focus-visible {
 .experience-list { margin-top: 0.5rem; }
 
 .experience-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
     font-size: 0.9rem;
     color: var(--text-secondary);
-    padding: 0.15rem 0;
+    padding: 0.22rem 0;
 }
 
 .experience-list li strong {
     color: var(--text);
     font-weight: 600;
+}
+
+/* small, muted company marks (mixed sources unified to a transparent look) */
+.exp-logo {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    flex: none;
+    filter: grayscale(1);
+    opacity: 0.55;
 }
 
 /* ===== News ===== */
