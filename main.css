@@ -1,48 +1,50 @@
 /* ===== Variables ===== */
 :root {
-    --bg: #fafafa;
-    --text: #111827;
-    --text-secondary: #6b7280;
-    --text-tertiary: #9ca3af;
-    --accent: #2563eb;
-    --accent-hover: #1d4ed8;
-    --accent-subtle: #eff6ff;
-    --border: #e5e7eb;
-    --border-light: #f3f4f6;
+    /* one warm palette built around the black hole: near-neutral ink + a
+       single gold accent (deep amber for text, bright gold for decoration) */
+    --bg: #faf9f7;
+    --text: #1a1714;
+    --text-secondary: #5f5a52;
+    --text-tertiary: #968f86;
+    --accent: #8c5e10;                    /* deep amber, AA on light (5.4:1) */
+    --accent-hover: #b97e1c;
+    --accent-subtle: rgba(242, 164, 64, 0.11);
+    --border: #e9e3d9;
+    --border-light: #f2ede4;
     --sans: 'Inter', system-ui, -apple-system, sans-serif;
     --serif: 'Source Serif 4', Georgia, serif;
     --nav-h: 56px;
     /* black hole hero palette */
     --void: #07070a;
     --cream: #f4ecd8;
-    --gold: #f2a440;
-    --gold-deep: #a86a18;                 /* readable gold for text on light */
+    --gold: #f2a440;                      /* bright gold for decorative accents */
+    --gold-deep: #8c5e10;                 /* readable gold for text on light */
     --gold-subtle: rgba(242, 164, 64, 0.13);
     --gold-border: rgba(242, 164, 64, 0.42);
     /* theme-dependent surfaces */
-    --fade-rgb: 250, 250, 250;            /* band fade target (matches --bg) */
-    --nav-bg: rgba(250, 250, 250, 0.8);
+    --fade-rgb: 250, 249, 247;            /* band fade target (matches --bg) */
+    --nav-bg: rgba(250, 249, 247, 0.8);
     --photo-border: #ffffff;
     --logo-filter: grayscale(1);
-    --card-shadow: rgba(0, 0, 0, 0.08);
+    --card-shadow: rgba(40, 30, 10, 0.08);
 }
 
 html[data-theme="dark"] {
-    --bg: #0c0d11;
-    --text: #e9e9ee;
-    --text-secondary: #a0a4af;
-    --text-tertiary: #71757f;
-    --accent: #7aa9ff;
-    --accent-hover: #a3c4ff;
-    --accent-subtle: rgba(122, 169, 255, 0.12);
-    --border: #272a32;
-    --border-light: #1b1d24;
-    --gold-deep: #f0b860;                 /* brighter gold for text on dark */
-    --gold-subtle: rgba(242, 164, 64, 0.15);
+    --bg: #110f0e;
+    --text: #ece8e2;
+    --text-secondary: #a09a8f;
+    --text-tertiary: #6f685e;
+    --accent: #e6ad54;                    /* bright amber, 9.5:1 on dark */
+    --accent-hover: #f4c87e;
+    --accent-subtle: rgba(242, 164, 64, 0.14);
+    --border: #2a2722;
+    --border-light: #1c1a16;
+    --gold-deep: #e6ad54;
+    --gold-subtle: rgba(242, 164, 64, 0.16);
     --gold-border: rgba(242, 164, 64, 0.4);
-    --fade-rgb: 12, 13, 17;
-    --nav-bg: rgba(12, 13, 17, 0.78);
-    --photo-border: #2a2d36;
+    --fade-rgb: 17, 15, 14;
+    --nav-bg: rgba(17, 15, 14, 0.82);
+    --photo-border: #2c2922;
     --logo-filter: grayscale(1) invert(1) brightness(1.35);
     --card-shadow: rgba(0, 0, 0, 0.5);
 }
@@ -77,7 +79,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 ul { list-style: none; }
 
-::selection { background: var(--accent); color: #fff; }
+::selection { background: var(--accent); color: var(--bg); }
 
 a:focus-visible, button:focus-visible {
     outline: 2px solid var(--accent);
@@ -657,7 +659,7 @@ html[data-theme="dark"] .theme-icon-dark { display: none; }
 }
 .project-card:hover {
     border-color: var(--accent);
-    box-shadow: 0 2px 12px rgba(37, 99, 235, 0.08);
+    box-shadow: 0 2px 14px rgba(242, 164, 64, 0.16);
     color: inherit;
 }
 
