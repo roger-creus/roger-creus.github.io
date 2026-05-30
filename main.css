@@ -16,6 +16,35 @@
     --void: #07070a;
     --cream: #f4ecd8;
     --gold: #f2a440;
+    --gold-deep: #a86a18;                 /* readable gold for text on light */
+    --gold-subtle: rgba(242, 164, 64, 0.13);
+    --gold-border: rgba(242, 164, 64, 0.42);
+    /* theme-dependent surfaces */
+    --fade-rgb: 250, 250, 250;            /* band fade target (matches --bg) */
+    --nav-bg: rgba(250, 250, 250, 0.8);
+    --photo-border: #ffffff;
+    --logo-filter: grayscale(1);
+    --card-shadow: rgba(0, 0, 0, 0.08);
+}
+
+html[data-theme="dark"] {
+    --bg: #0c0d11;
+    --text: #e9e9ee;
+    --text-secondary: #a0a4af;
+    --text-tertiary: #71757f;
+    --accent: #7aa9ff;
+    --accent-hover: #a3c4ff;
+    --accent-subtle: rgba(122, 169, 255, 0.12);
+    --border: #272a32;
+    --border-light: #1b1d24;
+    --gold-deep: #f0b860;                 /* brighter gold for text on dark */
+    --gold-subtle: rgba(242, 164, 64, 0.15);
+    --gold-border: rgba(242, 164, 64, 0.4);
+    --fade-rgb: 12, 13, 17;
+    --nav-bg: rgba(12, 13, 17, 0.78);
+    --photo-border: #2a2d36;
+    --logo-filter: grayscale(1) invert(1) brightness(1.35);
+    --card-shadow: rgba(0, 0, 0, 0.5);
 }
 
 /* ===== Reset & Base ===== */
@@ -32,6 +61,7 @@ body {
     line-height: 1.65;
     color: var(--text);
     background: var(--bg);
+    transition: background-color 0.3s ease, color 0.3s ease;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -73,6 +103,16 @@ a:focus-visible, button:focus-visible {
     margin-bottom: 2rem;
     text-align: center;
 }
+/* gold rule echoing the black hole band */
+.section-title::after {
+    content: '';
+    display: block;
+    width: 34px;
+    height: 2px;
+    margin: 0.7rem auto 0;
+    border-radius: 2px;
+    background: linear-gradient(to right, var(--gold), var(--gold-deep));
+}
 
 .divider {
     border: none;
@@ -94,9 +134,9 @@ a:focus-visible, button:focus-visible {
     height: var(--nav-h);
 }
 
-/* frosted-white once scrolled past the black hole band */
+/* frosted surface once scrolled past the black hole band */
 .nav--solid {
-    background: rgba(250, 250, 250, 0.8);
+    background: var(--nav-bg);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom-color: var(--border);
@@ -225,8 +265,8 @@ a:focus-visible, button:focus-visible {
     z-index: 1;
     pointer-events: none;
     background: linear-gradient(to bottom,
-        rgba(250, 250, 250, 0) 0%,
-        rgba(250, 250, 250, 0.5) 60%,
+        rgba(var(--fade-rgb), 0) 0%,
+        rgba(var(--fade-rgb), 0.5) 60%,
         var(--bg) 100%);
 }
 
@@ -269,6 +309,50 @@ a:focus-visible, button:focus-visible {
 }
 .hero-band__aff-short { display: none; }
 
+/* scroll cue at the bottom of the band */
+.hero-band__scroll {
+    position: absolute;
+    left: 50%;
+    bottom: 11px;
+    transform: translateX(-50%);
+    z-index: 3;
+    color: var(--gold);
+    font-size: 0.95rem;
+    opacity: 0.75;
+    pointer-events: none;
+    animation: scroll-bounce 2.2s ease-in-out infinite;
+}
+@keyframes scroll-bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.5; }
+    50% { transform: translateX(-50%) translateY(4px); opacity: 0.9; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .hero-band__scroll { animation: none; }
+}
+
+/* dark-mode toggle */
+.theme-toggle {
+    position: absolute;
+    top: 50%;
+    right: 1.5rem;
+    transform: translateY(-50%);
+    z-index: 101;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.4rem;
+    font-size: 1rem;
+    line-height: 1;
+    color: rgba(244, 236, 216, 0.7);
+    transition: color 0.2s;
+}
+.theme-toggle:hover { color: var(--cream); }
+.nav--solid .theme-toggle { color: var(--text-secondary); }
+.nav--solid .theme-toggle:hover { color: var(--text); }
+.theme-icon-light { display: none; }
+html[data-theme="dark"] .theme-icon-light { display: inline; }
+html[data-theme="dark"] .theme-icon-dark { display: none; }
+
 /* ===== Hero / About ===== */
 .hero {
     display: grid;
@@ -289,8 +373,8 @@ a:focus-visible, button:focus-visible {
     height: 160px;
     border-radius: 50%;
     object-fit: cover;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    border: 3px solid #fff;
+    box-shadow: 0 4px 20px var(--card-shadow);
+    border: 3px solid var(--photo-border);
 }
 
 .hero__email {
@@ -381,16 +465,18 @@ a:focus-visible, button:focus-visible {
 /* small, muted company marks (mixed sources unified to a transparent look) */
 .exp-logos {
     display: flex;
-    gap: 3px;
+    gap: 2px;
     flex: none;
+    width: 30px;          /* fixed column so single- and dual-logo rows align */
     padding-top: 2px;
 }
+.exp-role strong { white-space: nowrap; }
 .exp-logo {
     width: 14px;
     height: 14px;
     object-fit: contain;
-    filter: grayscale(1);
-    opacity: 0.55;
+    filter: var(--logo-filter);
+    opacity: 0.6;
 }
 
 /* Experience / Education side by side */
@@ -495,8 +581,23 @@ a:focus-visible, button:focus-visible {
 .pub-card__venue {
     font-size: 0.85rem;
     font-weight: 600;
-    color: var(--accent);
+    color: var(--gold-deep);
     margin-top: 0.25rem;
+}
+
+/* award badge (Spotlight / Oral) */
+.pub-badge {
+    display: inline-block;
+    margin-left: 0.4rem;
+    padding: 0.05rem 0.5rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--gold-deep);
+    background: var(--gold-subtle);
+    border: 1px solid var(--gold-border);
+    border-radius: 100px;
+    vertical-align: middle;
 }
 
 .pub-card__details { margin-top: 0.5rem; }
@@ -600,6 +701,7 @@ a:focus-visible, button:focus-visible {
     .nav__burger { display: flex; }
     /* no brand on the left anymore, so the burger sits on the right */
     .nav__inner { justify-content: flex-end; }
+    .theme-toggle { right: auto; left: 1.5rem; }
 
     /* short affiliation on phones so it never clips */
     .hero-band__aff { letter-spacing: 0.18em; }

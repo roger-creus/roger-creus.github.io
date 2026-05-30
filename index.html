@@ -4,7 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#fafafa">
+    <script>
+      /* set theme before paint to avoid a flash of the wrong colours */
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          if (t !== 'dark' && t !== 'light') {
+            t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          }
+          document.documentElement.setAttribute('data-theme', t);
+          var m = document.querySelector('meta[name="theme-color"]');
+          if (m) m.setAttribute('content', t === 'dark' ? '#0c0d11' : '#fafafa');
+        } catch (e) {}
+      })();
+    </script>
     <title>Roger Creus Castanyer · PhD Student, RL &amp; Foundation Models</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <meta name="description" content="Roger Creus Castanyer is a PhD student at Mila &amp; Université de Montréal researching general, autonomous agents at the intersection of deep reinforcement learning and foundation models.">
     <meta name="author" content="Roger Creus Castanyer">
     <link rel="canonical" href="https://roger-creus.github.io/">
@@ -48,6 +66,10 @@
                 <a href="#projects" class="nav__link">Projects</a>
             </div>
         </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+            <i class="fa-solid fa-moon theme-icon-dark" aria-hidden="true"></i>
+            <i class="fa-solid fa-sun theme-icon-light" aria-hidden="true"></i>
+        </button>
     </nav>
 
     <main>
@@ -64,6 +86,7 @@
                     <span class="hero-band__aff-short">PhD Student · Mila / UdeM</span>
                 </p>
             </div>
+            <span class="hero-band__scroll" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
         </header>
 
         <!-- ===== About ===== -->
@@ -278,7 +301,7 @@
                         <div class="pub-card__body">
                             <a href="https://arxiv.org/pdf/2506.15544" target="_blank" class="pub-card__title">Stable Gradients for Stable Learning at Scale in Deep Reinforcement Learning</a>
                             <p class="pub-card__authors"><strong>Roger Creus Castanyer</strong>, Johan Obando-Ceron, Lu Li, Pierre-Luc Bacon, Glen Berseth, Aaron Courville, Pablo Samuel Castro</p>
-                            <p class="pub-card__venue">NeurIPS 2025 (Spotlight)</p>
+                            <p class="pub-card__venue">NeurIPS 2025 <span class="pub-badge">Spotlight</span></p>
                             <details class="pub-card__details">
                                 <summary>Abstract</summary>
                                 <p class="pub-card__abstract">This work investigates why scaling deep reinforcement learning networks often degrades performance, identifying the interplay of non-stationarity and gradient pathologies from suboptimal architectures as key causes. Through empirical analysis, we propose simple, easily integrated interventions that stabilize gradient flow, enabling robust performance across varying depths and widths. Our approach is compatible with standard algorithms and achieves strong results across diverse agents and environments, offering a practical path toward scaling deep RL effectively.</p>
@@ -308,7 +331,7 @@
                         <div class="pub-card__body">
                             <a href="https://arxiv.org/abs/2405.17243" target="_blank" class="pub-card__title">Surprise-Adaptive Intrinsic Motivation for Unsupervised Reinforcement Learning</a>
                             <p class="pub-card__authors">Adriana Hugessen*, <strong>Roger Creus Castanyer*</strong>, Faisal Mohamed*, Glen Berseth</p>
-                            <p class="pub-card__venue">RLC 2024 · Oral @ IMOL, NeurIPS 2023</p>
+                            <p class="pub-card__venue">RLC 2024 · IMOL @ NeurIPS 2023 <span class="pub-badge">Oral</span></p>
                             <details class="pub-card__details">
                                 <summary>Abstract</summary>
                                 <p class="pub-card__abstract">Both surprise-minimizing and surprise-maximizing (curiosity) objectives for unsupervised reinforcement learning (RL) have been shown to be effective in different environments, depending on the environment's level of natural entropy. However, neither method can perform well across all entropy regimes. In an effort to find a single surprise-based method that will encourage emergent behaviors in any environment, we propose an agent that can adapt its objective depending on the entropy conditions it faces, by framing the choice as a multi-armed bandit problem. We devise a novel intrinsic feedback signal for the bandit which captures the ability of the agent to control the entropy in its environment.</p>
@@ -600,6 +623,16 @@
                 el.classList.toggle('visible', pubsExpanded);
             });
             pubToggle.textContent = pubsExpanded ? 'Show less' : 'Show all publications';
+        });
+
+        // Dark-mode toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const themeMeta = document.querySelector('meta[name="theme-color"]');
+        themeToggle.addEventListener('click', () => {
+            const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', next);
+            if (themeMeta) themeMeta.setAttribute('content', next === 'dark' ? '#0c0d11' : '#fafafa');
+            try { localStorage.setItem('theme', next); } catch (e) {}
         });
     });
     </script>
