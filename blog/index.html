@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#faf9f7">
+    <script>
+      /* set theme before paint to avoid a flash of the wrong colours */
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          if (t !== 'dark' && t !== 'light') {
+            t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          }
+          document.documentElement.setAttribute('data-theme', t);
+          var m = document.querySelector('meta[name="theme-color"]');
+          if (m) m.setAttribute('content', t === 'dark' ? '#110f0e' : '#faf9f7');
+        } catch (e) {}
+      })();
+    </script>
+    <title>Blog · Roger Creus Castanyer</title>
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="../favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+    <meta name="description" content="Writing by Roger Creus Castanyer on agents, reinforcement learning and foundation models.">
+    <meta name="author" content="Roger Creus Castanyer">
+    <link rel="canonical" href="https://roger-creus.github.io/blog/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../main.css">
+</head>
+<body class="page-blog">
+    <nav class="nav nav--solid" id="nav">
+        <div class="nav__inner">
+            <button class="nav__burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="nav__links" id="navLinks">
+                <a href="../#about" class="nav__link">About</a>
+                <a href="../#news" class="nav__link">News</a>
+                <a href="../#publications" class="nav__link">Publications</a>
+                <a href="../#projects" class="nav__link">Projects</a>
+                <a href="./" class="nav__link active">Blog</a>
+            </div>
+        </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+            <i class="fa-solid fa-moon theme-icon-dark" aria-hidden="true"></i>
+            <i class="fa-solid fa-sun theme-icon-light" aria-hidden="true"></i>
+        </button>
+    </nav>
+
+    <main>
+        <section class="section blog-index">
+            <div class="wrap">
+                <h1 class="section-title">Blog</h1>
+                <div class="post-list">
+                    <a class="post-item" href="astra-craftax-nethack/">
+                        <img class="post-item__img" src="astra-craftax-nethack/figures/00_cover.jpg" alt="" loading="lazy">
+                        <div class="post-item__body">
+                            <p class="post-item__date">September 2026</p>
+                            <h2 class="post-item__title">I let GPT-6 Astra run its own research. It beat Craftax and reached the bottom of NetHack.</h2>
+                            <p class="post-item__excerpt">For three weeks, GPT-6 Astra read its own failed games, rewrote the prompts, tools and memory of the Astra agents that were playing, and launched new games to test each idea. One of its players defeated the Necromancer in Craftax; another performed the invocation and entered Moloch's Sanctum in NetHack.</p>
+                            <span class="post-item__more">Read the post <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+                        </div>
+                    </a>
+                    <a class="post-item" href="populora/">
+                        <img class="post-item__img" src="../pics/populora.png" alt="" loading="lazy">
+                        <div class="post-item__body">
+                            <p class="post-item__date">May 2026 · Vmax blog</p>
+                            <h2 class="post-item__title">PopuLoRA: Co-Evolving LLM Populations for Reasoning Self-Play</h2>
+                            <p class="post-item__excerpt">Single-agent self-play collapses onto tasks the model can already solve. PopuLoRA splits task generation and solving across co-evolving populations of LoRA teachers and students, turning self-play into an arms race whose curriculum keeps expanding.</p>
+                            <span class="post-item__more">Read the post <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Roger Creus Castanyer</p>
+    </footer>
+
+    <script src="../cosmos.js"></script>
+    <script src="blog.js"></script>
+</body>
+</html>

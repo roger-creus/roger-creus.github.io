@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#faf9f7">
+    <script>
+      /* set theme before paint to avoid a flash of the wrong colours */
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          if (t !== 'dark' && t !== 'light') {
+            t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          }
+          document.documentElement.setAttribute('data-theme', t);
+          var m = document.querySelector('meta[name="theme-color"]');
+          if (m) m.setAttribute('content', t === 'dark' ? '#110f0e' : '#faf9f7');
+        } catch (e) {}
+      })();
+    </script>
+    <title>PopuLoRA: Co-Evolving LLM Populations for Reasoning Self-Play · Roger Creus Castanyer</title>
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="../../favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+    <meta name="description" content="We introduce PopuLoRA, a population-based asymmetric self-play framework for reinforcement learning with verifiable rewards (RLVR) post-training of LLMs.">
+    <meta name="author" content="Roger Creus Castanyer">
+    <link rel="canonical" href="https://vmax.ai/team/populora-co-evolving-llm-populations-for-reasoning-self-play">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://roger-creus.github.io/blog/populora/">
+    <meta property="og:title" content="PopuLoRA: Co-Evolving LLM Populations for Reasoning Self-Play">
+    <meta property="og:description" content="We introduce PopuLoRA, a population-based asymmetric self-play framework for reinforcement learning with verifiable rewards (RLVR) post-training of LLMs.">
+    <meta property="og:image" content="https://roger-creus.github.io/pics/populora.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@creus_roger">
+    <meta name="twitter:title" content="PopuLoRA: Co-Evolving LLM Populations for Reasoning Self-Play">
+    <meta name="twitter:description" content="We introduce PopuLoRA, a population-based asymmetric self-play framework for reinforcement learning with verifiable rewards (RLVR) post-training of LLMs.">
+    <meta name="twitter:image" content="https://roger-creus.github.io/pics/populora.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../main.css">
+</head>
+<body class="page-blog">
+    <nav class="nav nav--solid" id="nav">
+        <div class="nav__inner">
+            <button class="nav__burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="nav__links" id="navLinks">
+                <a href="../../#about" class="nav__link">About</a>
+                <a href="../../#news" class="nav__link">News</a>
+                <a href="../../#publications" class="nav__link">Publications</a>
+                <a href="../../#projects" class="nav__link">Projects</a>
+                <a href="../" class="nav__link active">Blog</a>
+            </div>
+        </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+            <i class="fa-solid fa-moon theme-icon-dark" aria-hidden="true"></i>
+            <i class="fa-solid fa-sun theme-icon-light" aria-hidden="true"></i>
+        </button>
+    </nav>
+
+    <main>
+        <article class="post">
+            <header class="post-head">
+                <a href="../" class="post-back"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> All posts</a>
+                <h1 class="post-title">PopuLoRA: Co-Evolving LLM Populations for Reasoning Self-Play</h1>
+                <p class="post-meta">Vmax · May 20, 2026 · 7 min read</p>
+            </header>
+            <div class="post-body">
+<p class="post-origin"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> Originally published on the <a href="https://vmax.ai/team/populora-co-evolving-llm-populations-for-reasoning-self-play" target="_blank" rel="noopener">Vmax blog</a>. Paper: <a href="https://arxiv.org/abs/2605.16727" target="_blank" rel="noopener">arXiv:2605.16727</a>.</p>
+<p class="post-authors">Roger Creus Castanyer, Geoffrey Bradway, Lorenz Wolf, Maxwill Lin, Augustine N. Mavor-Parker, Matthew James Sargent</p>
+<p>Reinforcement learning with verifiable rewards (RLVR) gives large language models (LLMs; hereafter, models) a way to develop sophisticated reasoning behaviors that pre-training alone does not reliably produce: models repeatedly attempt tasks whose solutions can be checked automatically, and they are reinforced when those attempts succeed. When the correctness of model-generated solutions is verifiable, the reward is unusually clean: the model writes code that passes a unit test, finds an input that matches a target output, solves a math task with a checkable answer, or succeeds under any deterministic verifier.</p>
+<p>RLVR needs a steady <strong>supply of verifiable tasks</strong> at scale: tasks whose solutions can be checked, whose difficulty stays near the model's frontier, and whose coverage is broad enough to keep training useful. Today, most systems still rely on fixed, hand-curated task distributions chosen before training begins. Those distributions can become too easy, too narrow, or too slow to adapt.</p>
+<p>Synthetic RLVR tasks can be produced with hand-written generators, and this is already a common way to scale verifiable training data. But a fixed generator still defines much of the curriculum in advance. Self-play offers a more adaptive route: models can generate tasks, attempt them, and receive verifier feedback as training unfolds. We build on this line of work, asking whether task generation can become an online curriculum that adapts as the models learn.</p>
+<p>PopuLoRA is our first step in that direction. It trains co-evolving populations of teacher and student LLM adapters. Teachers generate verifiable tasks, students try to solve them, and the verifier supplies the reward. As students improve, teachers have to search for harder and broader tasks; as teachers diversify, students see a curriculum that keeps moving with them.</p>
+<h2 id="self-play-and-its-failure-mode">Self-Play and Its Failure Mode</h2>
+<p>A viable way to adaptively generate data is single-agent self-play: one model proposes tasks for itself and then tries to solve them. In the code-reasoning setting we study, the model generates three kinds of tasks: <em>code_o</em>, where it predicts the output of a program; <em>code_i</em>, where it finds an input that produces a target output; and <em>code_f</em>, where it completes a missing function from input-output examples. A sandboxed Python executor accepts only programs that parse, execute, and behave deterministically.</p>
+<figure class="post-fig"><img src="figures/01_self_play_vs_populora.gif" alt="Single-agent self-play vs PopuLoRA" loading="lazy"></figure>
+<p>In practice, we find that single-agent self-play <strong>self-calibrates</strong>: task generation converges toward valid tasks that its own solver can already handle, solve rate climbs toward 100%, and the curriculum collapses onto increasingly simple programs. The reward curve looks healthy, but the training distribution has stopped pushing the model.</p>
+<p>The collapse is visible in the generated programs. In the single-agent baseline, AST depth, cyclomatic complexity, lines of code, and variable count all trend downward. PopuLoRA moves in the opposite direction: the generated tasks become longer, deeper, and more structurally varied over training.</p>
+<figure class="post-fig"><img src="figures/02_program_complexity.gif" alt="Program complexity animation" loading="lazy"></figure>
+<h2 id="populora">PopuLoRA</h2>
+<p>PopuLoRA separates task generation from task solving. Instead of one self-playing model, we train co-evolving populations of specialized task generators, called teachers (T), and solvers, called students (S). At each step, a teacher is matched with a student: the teacher proposes tasks, and the paired student attempts them under the verifier. A teacher is rewarded for valid tasks that the matched student fails to solve, so difficulty is measured against a different model rather than against the teacher's own ability.</p>
+<figure class="post-fig"><img src="figures/03_method.gif" alt="PopuLoRA method animation" loading="lazy"></figure>
+<p>This turns difficulty into an inter-population signal. Teachers and students are different models, and both sub-populations continue changing throughout training. The result is an autocurriculum driven by cross-evaluation rather than by a single model's local notion of task difficulty.</p>
+<p>The populations are implemented as LoRA adapters on a shared frozen base model. Each member trains only a small low-rank update rather than a full model copy, while the dominant base-model computation is shared across teachers and students. This makes population training feasible on a single machine: memory scales with the sum of adapter weights, multi-LoRA inference routes batched requests to the correct adapter without swapping the base model in and out of memory, and the 4T+4S setting trains eight adapters with only a 1.31x wall-clock overhead.</p>
+<h2 id="the-training-loop">The Training Loop</h2>
+<p>Each PopuLoRA step has five phases. First, teachers and students are matched using prioritized fictitious self-play over TrueSkill ratings, which concentrates training on near-balanced matchups where neither side dominates. Each teacher then generates a batch of <em>code_i</em>, <em>code_o</em>, and <em>code_f</em> tasks. The Python verifier filters out invalid or nondeterministic programs before students ever see them. The matched student attempts the valid tasks with multiple stochastic rollouts, and the verifier records the fraction of attempts that solve each task.</p>
+<p>Teachers and students are then updated jointly with policy-gradient RL. Students receive the verifier reward for producing correct, well-formed solutions. Teachers receive reward only for valid tasks that are hard for the matched student, with a zero-reward floor for tasks no rollout solves. This floor matters: it prevents teachers from being rewarded for impossible or degenerate tasks. The teacher objective therefore favors the contested middle: valid tasks that are difficult but learnable.</p>
+<p>At the core, teacher reward is tied to the matched student's solve rate:</p>
+<div class="post-eq"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>R</mi><mtext>teacher</mtext></msub><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo><mtext>  </mtext><mo>=</mo><mtext>  </mtext><mrow><mo fence="true">{</mo><mtable columnalign="left left" columnspacing="1em" rowspacing="0.36em"><mtr><mtd><mstyle displaystyle="false" scriptlevel="0"><mrow><mo>−</mo><mn>1</mn></mrow></mstyle></mtd><mtd><mstyle displaystyle="false" scriptlevel="0"><mrow><mtext>if </mtext><mi>p</mi><mtext> fails to parse, execute, or is non-deterministic,</mtext></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle displaystyle="false" scriptlevel="0"><mn>0</mn></mstyle></mtd><mtd><mstyle displaystyle="false" scriptlevel="0"><mrow><mtext>if </mtext><mi>ρ</mi><mo stretchy="false">(</mo><mi>t</mi><mo separator="true">,</mo><mi>s</mi><mo separator="true">,</mo><mi>p</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn><mo separator="true">,</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle displaystyle="false" scriptlevel="0"><mrow><mn>1</mn><mo>−</mo><mi>ρ</mi><mo stretchy="false">(</mo><mi>t</mi><mo separator="true">,</mo><mi>s</mi><mo separator="true">,</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd><mtd><mstyle displaystyle="false" scriptlevel="0"><mtext>otherwise,</mtext></mstyle></mtd></mtr></mtable></mrow></mrow></semantics></math></div>
+<p>Here, ρ(t, s, p) denotes the fraction of rollout attempts by the matched student <em>s</em> that solve task <em>p</em> from teacher <em>t</em>. Lowercase <em>t</em> and <em>s</em> denote the specific matched teacher and student; uppercase T and S refer to the teacher and student roles or counts.</p>
+<p>Every few update steps, the weakest members of the teacher sub-population and the student sub-population are replaced through LoRA weight-space evolution.</p>
+<h2 id="evolution-in-weight-space">Evolution in Weight Space</h2>
+<p>PopuLoRA uses evolution as the replacement step of population-based training. The replacement operators act directly on LoRA tensors. Mutations perturb one parent adapter; crossovers combine two parent adapters into a child. Some operators perturb singular values or rotate low-rank subspaces, while others swap layer-module slots between parents. Because these operators act on low-rank LoRA tensors, new population members can be produced in seconds and re-enter gradient training immediately.</p>
+<figure class="post-fig"><img src="figures/04_lora_operator_recovery.gif" alt="LoRA operator recovery animation" loading="lazy"></figure>
+<p>The key requirement for an operator is capability retention. A replacement child should not reset to the frozen base; it should preserve enough parent behavior to re-enter training near the current frontier. In our retention tests, the operators used in the live population recover to parent-level reward within roughly 10-20 update steps after reinjection.</p>
+<p>Crossovers are especially important because they can combine complementary specializations. Parents trained along different trajectories can produce a child that retains useful behavior from both, giving the population a way to recombine discoveries rather than only perturb them.</p>
+<h2 id="the-arms-race">The Arms Race</h2>
+<p>The training dynamics show why this separation matters. In the single-agent baseline, solve rates quickly saturate to near-perfect performance. This is not evidence of a strong curriculum. It means the proposer has found tasks its own solver can reliably solve.</p>
+<p>In PopuLoRA, solve rates oscillate instead of monotonically increasing. As teachers generate harder tasks, students fail more often; as students improve, teachers are pushed to increase difficulty again. The curriculum evolves with the models rather than settling around a fixed point.</p>
+<figure class="post-fig"><img src="figures/05_solve_rate_by_task.gif" alt="Solve rate by task type animation" loading="lazy"></figure>
+<p>TrueSkill makes the same arms race visible at the population level. Individual adapters start near the same prior rating, then differentiate as training proceeds: stronger and weaker teachers emerge, stronger and weaker students emerge, and different members specialize along different trajectories. In the TrueSkill plots, lines show population means and shaded bands show standard deviations across population members.</p>
+<figure class="post-fig"><img src="figures/06_trueskill_arms_race.gif" alt="TrueSkill arms race animation" loading="lazy"></figure>
+<p>The generated programs show the same pattern directly. The single-agent baseline learns to produce shorter, flatter, simpler programs, exactly the kind its own solver can handle. PopuLoRA does the opposite. Because teacher reward depends on matched-student failure, the only way to keep receiving reward is to keep finding valid tasks that push the current students. The curriculum is not only getting harder; it is expanding into a larger and more diverse region of program space.</p>
+<h2 id="downstream-results">Downstream Results</h2>
+<p>After training, PopuLoRA outperforms the per-adapter compute-matched single-agent baseline on standard code benchmarks including HumanEval+, MBPP+, and LiveCodeBench.</p>
+<figure class="post-fig"><img src="figures/07_downstream_eval.gif" alt="Downstream evaluation animation" loading="lazy"></figure>
+<p>PopuLoRA also shows gains on math benchmarks, even though training uses only code tasks generated during training and a Python executor rather than a math verifier. We treat these results as suggestive transfer, not proof that populations alone cause out-of-domain generalization. Gains on AIME, AMC, MATH-500, GSM8K, and OlympiadBench are consistent with a harder and more diverse code curriculum helping broader reasoning, but they do not isolate which part of the method is responsible.</p>
+<p>The gains are also population-wide. Even the weakest members of the 4T+4S population outperform the baseline on aggregate metrics, so the effect is not a single lucky specialist. Co-evolution lifts the whole population.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>PopuLoRA is an early step toward systems that can generate part of their own training frontier. If the same model both proposes tasks and estimates their difficulty, self-play can self-calibrate toward tasks the model already knows how to solve. Separating task generator and solver changes the pressure: teachers search for the edge of current student ability, students improve, and the teacher population has to search again.</p>
+<p>The practical pieces matter. Asymmetric roles supply the pressure, populations supply diversity, LoRA makes the population affordable, and online weight-space evolution keeps weak lineages from sitting still. Together, they turn self-play from a loop that can collapse into comfort-zone learning into a self-generated curriculum that keeps expanding throughout training.</p>
+<p>Looking forward, PopuLoRA suggests a practical path for self-play and self-improving systems: keep generation, evaluation, and replacement distributed across a changing population, so the system has to adapt to opponents that are changing with it.</p>
+            </div>
+        </article>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Roger Creus Castanyer</p>
+    </footer>
+
+    <script src="../../cosmos.js"></script>
+    <script src="../blog.js"></script>
+</body>
+</html>

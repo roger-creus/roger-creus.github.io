@@ -28,6 +28,8 @@ No build system. To develop locally, open `index.html` in a browser or run `pyth
 - `main.css` — all custom styles (variables, responsive breakpoints, component styles)
 - `pics/` — publication thumbnails and profile photo
 - `uploads/` — CV PDF
+- `blog/`: blog index (`blog/index.html`), one folder per post (`blog/<slug>/index.html` + `figures/`), shared `blog/blog.js`
+- `cosmos.js`: faint fixed starfield (twinkle + rare shooting star) included on every page
 
 ## Key Patterns
 
